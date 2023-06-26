@@ -6,6 +6,7 @@ const GameQueuePage: React.FC = () => {
   const router = useRouter();
   const { gameId } = router.query;
   const [data, setData] = useState<string>('');
+  const qrCodeRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,14 +23,12 @@ const GameQueuePage: React.FC = () => {
     fetchData();
 
     // Poll for updates every second
-    const interval = setInterval(fetchData, 1000);
+    const interval = setInterval(fetchData, 3000);
 
     return () => {
       clearInterval(interval);
     };
   }, [gameId]);
-
-  const qrCodeRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const generateQRCode = async () => {

@@ -25,3 +25,37 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.homescreen {
+  padding-top: 32px;
+  text-align: center;
+  margin: 0px auto 32px auto;
+  width: 40%;
+}
+
+.newGame {
+  margin: 8px 0 8px 0;
+  > button {
+    padding: 4px;
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+}
+
+.loadGame {
+  display: inline-grid;
+  margin: 8px 0 8px 0;
+  > input {
+    padding: 4px;
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+  > button {
+    padding: 4px;
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+  > #errorCode {
+    color: red;
+  }
+}

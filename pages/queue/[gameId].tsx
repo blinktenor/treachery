@@ -1,17 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import QRCode from 'qrcode';
+import useUserId from '/hooks/useUserId';
 
 const GameQueuePage: React.FC = () => {
   const router = useRouter();
   const { gameId } = router.query;
   const [data, setData] = useState<string>('');
   const qrCodeRef = useRef<HTMLCanvasElement>(null);
+  const userId = useUserId();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/game?id=${gameId}&userId=asdf`);
+        const response = await fetch(`/api/game?gameId=${gameId}&userId=${userId}`);
         const data = await response.text();
         setData(data);
       } catch (error) {

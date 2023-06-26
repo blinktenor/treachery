@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+import QRCode from 'qrcode';
 
 const GameQueuePage: React.FC = () => {
   const router = useRouter();
@@ -9,7 +10,7 @@ const GameQueuePage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/game?id=${gameId}`);
+        const response = await fetch(`/api/game?id=${gameId}&userId=asdf`);
         const data = await response.text();
         setData(data);
       } catch (error) {
@@ -28,11 +29,29 @@ const GameQueuePage: React.FC = () => {
     };
   }, [gameId]);
 
+  const qrCodeRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const generateQRCode = async () => {
+      if (qrCodeRef.current) {
+        const currentUrl = window.location.href;
+        try {
+          await QRCode.toCanvas(qrCodeRef.current, currentUrl);
+        } catch (error) {
+          console.error('Error generating QR code:', error);
+        }
+      }
+    };
+
+    generateQRCode();
+  }, []);
+
   return (
     <div>
       <h1>Treachery</h1>
       <p>Game Id: {gameId}</p>
       <p>Current Player Count: {data}</p>
+      <canvas ref={qrCodeRef} />
     </div>
   );
 };

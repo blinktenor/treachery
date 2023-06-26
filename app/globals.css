@@ -59,3 +59,26 @@ body {
     color: red;
   }
 }
+
+.queueScreen {
+  padding-top: 32px;
+  text-align: center;
+  margin: 0px auto 32px auto;
+  width: 40%;
+
+  .copyContainer {
+    margin-top: 8px;
+    display: inline-grid;
+    padding: 16px;
+    border: 1px solid white;
+    border-radius: 8px;
+    > canvas {
+      margin: 8px auto 8px auto;
+    }
+    > button {
+      display: inline-grid;
+      margin: 8px auto 8px auto;
+    }
+  }
+  
+}

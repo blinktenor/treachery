@@ -3,18 +3,17 @@ import Image from 'next/image'
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import useUserId from '/hooks/useUserId';
+import useUserId from '../hooks/useUserId';
 
 const Home: React.FC = () => {
   const router = useRouter();
   const userId = useUserId();
   const [gameInputValue, setGameInputValue] = useState('');
   const [errorCode, setErrorCode] = useState('');
-  const images = ['home1.jpg', 'home2.jpg', 'home3.jpg'];
   const [backgroundImage, setBackgroundImage] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    setGameInputValue(e.target.value);
   };
 
   const startGame = () => {
@@ -36,6 +35,7 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
+    const images = ['home1.jpg', 'home2.jpg', 'home3.jpg'];
     const randomIndex = Math.floor(Math.random() * images.length);
     const selectedImage = images[randomIndex];
     setBackgroundImage(selectedImage);

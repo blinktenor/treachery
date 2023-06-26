@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 const useUserIdStorage = (): string | null => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') return null;
 
   const generateUserId = (): string => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -18,7 +18,7 @@ const useUserIdStorage = (): string | null => {
   useEffect(() => {
     const saveUserIdToStorage = () => {
       if (!sessionStorage.getItem('userId')) {
-        sessionStorage.setItem('userId', generateUserId);
+        sessionStorage.setItem('userId', generateUserId());
       }
     };
   }, []);

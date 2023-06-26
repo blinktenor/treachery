@@ -1,15 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import QRCode from 'qrcode';
-import useUserId from '/hooks/useUserId';
+import useUserId from '../../hooks/useUserId';
 import axios from 'axios';
+import '/app/globals.css'
+
+type GameData = {
+  gameId: string;
+  playerCount: number;
+}
 
 const GameQueuePage: React.FC = () => {
   const router = useRouter();
   const { gameId } = router.query;
-  const [data, setData] = useState<object>(undefined);
-  const qrCodeRef = useRef<HTMLCanvasElement>(null);
+  const [data, setData] = useState<GameData | undefined>(undefined);
+  const qrCodeRef = useRef<HTMLCanvasElement | null>(null);
   const userId = useUserId();
+  const [gameStart, setGameStart] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +36,7 @@ const GameQueuePage: React.FC = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [gameId]);
+  }, [gameId, userId]);
 
   useEffect(() => {
     const generateQRCode = async () => {
@@ -46,13 +53,57 @@ const GameQueuePage: React.FC = () => {
     generateQRCode();
   }, []);
 
+  useEffect(() => {
+    if (data && data['playerCount'] > 4) {
+      setGameStart(true);
+    }
+  }, [data]);
+
+  const copyQRCode = () => {
+    if (qrCodeRef.current) {
+      qrCodeRef.current.toBlob((blob) => {
+        if (blob) {
+          const data = [new ClipboardItem({ 'image/png': blob })];
+          navigator.clipboard.write(data as ClipboardItems);
+        }
+      });
+    }
+  };
+
+  const copyGameUrl = () => {
+    navigator.clipboard.write(window.location.href as any as ClipboardItems);
+  };
+
+  const handleShareToDiscord = () => {
+    const url = window.location.href;
+    const discordShareUrl = `https://discord.com/api/share?url=${encodeURIComponent(url)}`;
+
+    window.open(discordShareUrl, '_blank');
+  };
+
+  const startGame = () => {
+
+  }
+
   return (
-    <div>
-      <h1>Treachery</h1>
-      <p>Game Id: {gameId}</p>
-      <p>Current Player Count: {data?.playerCount}</p>
-      <canvas ref={qrCodeRef} />
-    </div>
+    <>
+      <div className='queueScreen'>
+        <h1>Treachery</h1>
+        <p>Game Id: {gameId}</p>
+        <p>Current Player Count: {data?.playerCount}</p>
+        {gameStart && (
+          <div>
+            <button onClick={startGame} > Start Game! </button>
+          </div>
+        )}
+        <div className='copyContainer'>
+          <canvas ref={qrCodeRef} />
+          <button onClick={copyQRCode}> Copy QR Code </button>
+          <button onClick={copyGameUrl}> Copy Game URL </button>
+          <button onClick={handleShareToDiscord}> Share to Discord </button>
+        </div>
+      </div>
+    </>
   );
 };
 

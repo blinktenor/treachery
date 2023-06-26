@@ -2,26 +2,25 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import QRCode from 'qrcode';
 import useUserId from '/hooks/useUserId';
+import axios from 'axios';
 
 const GameQueuePage: React.FC = () => {
   const router = useRouter();
   const { gameId } = router.query;
-  const [data, setData] = useState<string>('');
+  const [data, setData] = useState<object>(undefined);
   const qrCodeRef = useRef<HTMLCanvasElement>(null);
   const userId = useUserId();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/game?gameId=${gameId}&userId=${userId}`);
-        const data = await response.text();
-        setData(data);
+        const response = await axios.get(`/api/game?gameId=${gameId}&userId=${userId}`);
+        setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
-    // Fetch initial data
     fetchData();
 
     // Poll for updates every second
@@ -51,7 +50,7 @@ const GameQueuePage: React.FC = () => {
     <div>
       <h1>Treachery</h1>
       <p>Game Id: {gameId}</p>
-      <p>Current Player Count: {data}</p>
+      <p>Current Player Count: {data?.playerCount}</p>
       <canvas ref={qrCodeRef} />
     </div>
   );

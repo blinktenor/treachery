@@ -3,7 +3,7 @@ import { Game, Player } from './gameTypes';
 
 const games: Game[] = [];
 
-const getGameById = (gameId: string) => games.filter((game) => game.gameId == gameId);
+const getGameById = (gameId: string) => games.filter((game) => game.gameId == gameId)[0];
 const isPlayerInGame = (userId: string, game: Game) => game.players.filter((player) => player.playerId === userId).length > 0;
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -12,9 +12,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     if (Array.isArray(gameId)) gameId = gameId.join('');
     if (Array.isArray(userId)) userId = userId.join('');
     const newPlayer: Player = { playerId: userId };
-    const game = getGameById(gameId)[0] || {gameId: gameId, players: [newPlayer]} as Game;
+    const game = getGameById(gameId) || {gameId: gameId, players: [newPlayer]} as Game;
     if (!isPlayerInGame(userId, game)) {
       game.players.push(newPlayer);
+    }
+    if (!getGameById(gameId)) {
+      games.push(game);
     }
     res.status(200).json({ game: gameId, playerCount: game.players.length });
   } else {

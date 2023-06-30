@@ -19,23 +19,23 @@ const GameQueuePage: React.FC = () => {
   const [gameStart, setGameStart] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`/api/game?gameId=${gameId}&userId=${userId}`);
-        setData(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+    if (gameId && userId) {
+      const webSocket = new WebSocket('ws://3.144.162.123:1037');
 
-    fetchData();
+      webSocket.onopen = () => {
+        webSocket.send(JSON.stringify({ gameId, userId }));
+      };
 
-    // Poll for updates every second
-    const interval = setInterval(fetchData, 3000);
+      webSocket.onmessage = (event) => {
+        setData(JSON.parse(event.data));
+      };
 
-    return () => {
-      clearInterval(interval);
-    };
+      webSocket.onclose = () => { /* Nothing yet */ };
+
+      webSocket.onerror = (error) => { /* Nothing yet */ };
+
+      return () => { webSocket.close(); };
+    }
   }, [gameId, userId]);
 
   useEffect(() => {

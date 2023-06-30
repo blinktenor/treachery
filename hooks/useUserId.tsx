@@ -21,6 +21,8 @@ const useUserIdStorage = (): string | null => {
         sessionStorage.setItem('userId', generateUserId());
       }
     };
+
+    saveUserIdToStorage();
   }, []);
 
   return sessionStorage.getItem('userId');

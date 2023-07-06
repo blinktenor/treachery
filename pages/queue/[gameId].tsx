@@ -20,7 +20,7 @@ const GameQueuePage: React.FC = () => {
 
   useEffect(() => {
     if (gameId && userId) {
-      const webSocket = new WebSocket('wss://3.144.162.123:1037');
+      const webSocket = new WebSocket('wss://dndtower.com:443');
 
       webSocket.onopen = () => {
         webSocket.send(JSON.stringify({ gameId, userId }));

@@ -32,7 +32,7 @@ const GameQueuePage: React.FC = () => {
 
       webSocket.onclose = () => { /* Nothing yet */ };
 
-      webSocket.onerror = (error) => { /* Nothing yet */ };
+      webSocket.onerror = (error) => { console.log(error); /* Nothing yet */ };
 
       return () => { webSocket.close(); };
     }

@@ -7,17 +7,12 @@ const options = {
   cert: fs.readFileSync('./cert.pem', 'utf8')
 };
 
-// const server = https.createServer(options, (req, res) => {
-//   res.writeHead(301, { 'Location': 'https://treachery.vercel.app/' });
-//   res.end();
-// });
-
 const server = https.createServer(options, (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello, World!');
+  res.writeHead(301, { 'Location': 'https://treachery.vercel.app/' });
+  res.end();
 });
 
-server.listen(1037);
+server.listen(888);
 
 module.exports = server;
 

@@ -1,63 +1,34 @@
-const WebSocketServer = require('ws');
+const fs = require('fs');
 
-type Message = {
-  gameId: string;
-  startGame?: boolean;
-  userId: string;
-}
+const connections = new Set();
+const games = {};
 
-type Player = {
-  playerId: string;
-  roleType?: string;
-  roleName?: string;
-}
-
-type Game = {
-  gameId: string;
-  host: string;
-  players: Player[];
-}
-
-type Games = {
-  [gameId: string]: Game;
-};
-
-type Connection = {
-  socket: WebSocket;
-  gameId: string;
-  userId: string;
-}
-
-const games: Games = {};
-
-//@ts-ignore
-const wss = new WebSocketServer.Server({ port: 1037 });
-const connections = new Set<Connection>();
-
-const isPlayerAssigned = (gameId: string, userId: string) => {
+const isPlayerAssigned = (gameId, userId) => {
   const player = isPlayerInGame(gameId, userId);
   return player?.roleType !== undefined;
-}
+};
 
-const isPlayerInGame = (gameId: string, userId: string) => {
+const isPlayerInGame = (gameId, userId) => {
   return games[gameId]?.players.filter((player) => player.playerId === userId)[0];
-}
+};
 
-const playersInGame = (game: Game) => new Set([...game?.players].map((player) => player.playerId)).size;
+const playersInGame = (game) => new Set([...game?.players].map((player) => player.playerId)).size;
 
-wss.on('connection', (ws: any) => {
-  let socketConnection: Connection;
+const socketMethods = (ws) => {
+  logToFile('WebSocket server connected.');
+  let socketConnection;
 
-  ws.on('message', (message: any) => {
-    const data: Message = JSON.parse(message);
+  ws.on('message', (message) => {
+    const data = JSON.parse(message);
     const { userId, gameId } = data;
-    const connection: Connection = { socket: ws, gameId: gameId, userId: userId };
-    if (!socketConnection) {
-      socketConnection = connection;
-      connections.add(connection);
-    }
 
     if (userId && gameId) {
+      const connection = { socket: ws, gameId: gameId, userId: userId };
+      if (!socketConnection) {
+        socketConnection = connection;
+        connections.add(connection);
+      }
+      
       const player = { playerId: userId };
 
       if (!games[gameId]) {
@@ -65,7 +36,7 @@ wss.on('connection', (ws: any) => {
           host: userId,
           gameId: gameId,
           players: [player]
-        }
+        };
 
         games[gameId] = game;
       } else {
@@ -89,7 +60,7 @@ wss.on('connection', (ws: any) => {
     const { gameId, userId } = socketConnection;
 
     // Player dropped before we assigned roles
-    if (!isPlayerAssigned(gameId, userId)) { 
+    if (!isPlayerAssigned(gameId, userId)) {
       const player = games[gameId]?.players.filter((player) => player.playerId === userId)[0];
       games[gameId]?.players.splice(games[gameId].players.indexOf(player), 1);
 
@@ -101,11 +72,21 @@ wss.on('connection', (ws: any) => {
     }
 
     if (gameId) {
-      // need to add host info into here
       const messageToBroadcast = JSON.stringify({ playerCount: playersInGame(games[gameId]) });
       connections.forEach((connection) => {
         connection.socket.send(messageToBroadcast);
       });
     }
   });
-});
+}
+
+function logToFile(message) {
+  const logEntry = `${new Date().toISOString()}: ${message}\n`;
+  fs.appendFile('server.log', logEntry, (err) => {
+    if (err) {
+      console.error('Failed to write log entry:', err);
+    }
+  });
+}
+
+module.exports = socketMethods;

@@ -1,4 +1,4 @@
-{
+const roleData = {
   "LEADER": [
     {
       "title": "The Blood Empress",
@@ -223,4 +223,6 @@
       "ability": "Unveil {0}As The Wearer of Masks is unveiled, choose four Traitor identity cards at random from outside the game. You may pay the unveil cost of one of those cards. If you do, until The Wearer of Masks is turned face down, it becomes a copy of that identity. If you don’t, turn The Wearer of Masks face down at the beginning of your next end step."
     }
   ]
-}
+};
+
+module.exports = roleData;

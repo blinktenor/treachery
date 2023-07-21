@@ -1,42 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
 import QRCode from 'qrcode';
 import useUserId from '../../hooks/useUserId';
 import axios from 'axios';
 import '/app/globals.css'
+import { GameData } from '../../types/gameTypes';
 
-type GameData = {
-  gameId: string;
-  playerCount: number;
+interface QueueProps {
+  gameId?: string | string[];
+  data: GameData;
+  webSocket?: WebSocket;
 }
 
-const GameQueuePage: React.FC = () => {
-  const router = useRouter();
-  const { gameId } = router.query;
-  const [data, setData] = useState<GameData | undefined>(undefined);
+const QueueScreen: React.FC<QueueProps> = ({ gameId, data, webSocket }) => {
   const qrCodeRef = useRef<HTMLCanvasElement | null>(null);
   const userId = useUserId();
-  const [gameStart, setGameStart] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (gameId && userId) {
-      const webSocket = new WebSocket('wss://dndtower.com:443');
-
-      webSocket.onopen = () => {
-        webSocket.send(JSON.stringify({ gameId, userId }));
-      };
-
-      webSocket.onmessage = (event) => {
-        setData(JSON.parse(event.data));
-      };
-
-      webSocket.onclose = () => { /* Nothing yet */ };
-
-      webSocket.onerror = (error) => { console.log(error); /* Nothing yet */ };
-
-      return () => { webSocket.close(); };
-    }
-  }, [gameId, userId]);
+  const gameStart = data && data.host;
 
   useEffect(() => {
     const generateQRCode = async () => {
@@ -52,12 +30,6 @@ const GameQueuePage: React.FC = () => {
 
     generateQRCode();
   }, []);
-
-  useEffect(() => {
-    if (data && data['playerCount'] > 4) {
-      setGameStart(true);
-    }
-  }, [data]);
 
   const copyQRCode = () => {
     if (qrCodeRef.current) {
@@ -82,7 +54,7 @@ const GameQueuePage: React.FC = () => {
   };
 
   const startGame = () => {
-
+    webSocket?.send(JSON.stringify({ gameId, userId, startGame: true }));
   }
 
   return (
@@ -107,4 +79,4 @@ const GameQueuePage: React.FC = () => {
   );
 };
 
-export default GameQueuePage;
+export default QueueScreen;

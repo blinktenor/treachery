@@ -17,10 +17,11 @@ const GameQueuePage: React.FC = () => {
   const qrCodeRef = useRef<HTMLCanvasElement | null>(null);
   const userId = useUserId();
   const [gameStart, setGameStart] = useState<boolean>(false);
+  const [webSocket, setWebsocket] = useState<WebSocket>(undefined);
 
   useEffect(() => {
     if (gameId && userId) {
-      const webSocket = new WebSocket('wss://dndtower.com:443');
+      const webSocket = new WebSocket('wss://localhost:888');
 
       webSocket.onopen = () => {
         webSocket.send(JSON.stringify({ gameId, userId }));
@@ -33,6 +34,8 @@ const GameQueuePage: React.FC = () => {
       webSocket.onclose = () => { /* Nothing yet */ };
 
       webSocket.onerror = (error) => { console.log(error); /* Nothing yet */ };
+
+      setWebsocket(webSocket);
 
       return () => { webSocket.close(); };
     }
@@ -54,8 +57,11 @@ const GameQueuePage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (data && data['playerCount'] > 4) {
+    if (data && data['playerCount'] > 0 && data['host']) {
       setGameStart(true);
+    }
+    if (data && data['role']) {
+      console.log(data);
     }
   }, [data]);
 
@@ -82,7 +88,7 @@ const GameQueuePage: React.FC = () => {
   };
 
   const startGame = () => {
-
+    webSocket.send(JSON.stringify({ gameId, userId, startGame: true }));
   }
 
   return (

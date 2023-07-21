@@ -6,11 +6,7 @@ import axios from 'axios';
 import '/app/globals.css'
 import QueueScreen from './queueScreen';
 import RoleScreen from './roleScreen';
-
-type GameData = {
-  gameId: string;
-  playerCount: number;
-}
+import { GameData } from '../../types/gameTypes';
 
 const GamePage: React.FC = () => {
   const router = useRouter();
@@ -18,7 +14,7 @@ const GamePage: React.FC = () => {
   const [data, setData] = useState<GameData | undefined>(undefined);
   const userId = useUserId();
   const [gameStart, setGameStart] = useState<boolean>(false);
-  const [webSocket, setWebsocket] = useState<WebSocket>(undefined);
+  const [webSocket, setWebsocket] = useState<WebSocket | undefined>(undefined);
 
   useEffect(() => {
     if (gameId && userId) {
@@ -42,18 +38,9 @@ const GamePage: React.FC = () => {
     }
   }, [gameId, userId]);
 
-  useEffect(() => {
-    if (data && data['playerCount'] > 0 && data['host']) {
-      setGameStart(true);
-    }
-    if (data && data['role']) {
-      console.log(data);
-    }
-  }, [data]);
-
   return (
     <>
-      { data && data['playerCount'] && <QueueScreen gameId={gameId} data={data} webSocket={webSocket} gameStart={gameStart} /> }
+      { data && data['playerCount'] && <QueueScreen gameId={gameId} data={data} webSocket={webSocket} /> }
       { data && data['role'] && <RoleScreen data={data} /> }
     </>
   );

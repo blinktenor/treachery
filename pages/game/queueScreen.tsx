@@ -3,22 +3,18 @@ import QRCode from 'qrcode';
 import useUserId from '../../hooks/useUserId';
 import axios from 'axios';
 import '/app/globals.css'
-
-type GameData = {
-  gameId: string;
-  playerCount: number;
-}
+import { GameData } from '../../types/gameTypes';
 
 interface QueueProps {
-  gameId: string;
+  gameId?: string | string[];
   data: GameData;
-  webSocket: WebSocket;
-  gameStart: boolean;
+  webSocket?: WebSocket;
 }
 
-const QueueScreen: React.FC<QueueProps> = ({ gameId, data, webSocket, gameStart }) => {
+const QueueScreen: React.FC<QueueProps> = ({ gameId, data, webSocket }) => {
   const qrCodeRef = useRef<HTMLCanvasElement | null>(null);
   const userId = useUserId();
+  const gameStart = data && data.host;
 
   useEffect(() => {
     const generateQRCode = async () => {
@@ -58,7 +54,7 @@ const QueueScreen: React.FC<QueueProps> = ({ gameId, data, webSocket, gameStart 
   };
 
   const startGame = () => {
-    webSocket.send(JSON.stringify({ gameId, userId, startGame: true }));
+    webSocket?.send(JSON.stringify({ gameId, userId, startGame: true }));
   }
 
   return (

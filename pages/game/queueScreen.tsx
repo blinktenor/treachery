@@ -43,7 +43,11 @@ const QueueScreen: React.FC<QueueProps> = ({ gameId, data, webSocket }) => {
   };
 
   const copyGameUrl = () => {
-    navigator.clipboard.write(window.location.href as any as ClipboardItems);
+    try {
+      navigator.clipboard.writeText(window.location.href);
+    } catch (err) {
+      console.error('Failed to copy to clipboard:', err);
+    }
   };
 
   const handleShareToDiscord = () => {

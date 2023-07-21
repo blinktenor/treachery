@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
 import QRCode from 'qrcode';
 import useUserId from '../../hooks/useUserId';
 import axios from 'axios';
@@ -10,36 +9,16 @@ type GameData = {
   playerCount: number;
 }
 
-const GameQueuePage: React.FC = () => {
-  const router = useRouter();
-  const { gameId } = router.query;
-  const [data, setData] = useState<GameData | undefined>(undefined);
+interface QueueProps {
+  gameId: string;
+  data: GameData;
+  webSocket: WebSocket;
+  gameStart: boolean;
+}
+
+const QueueScreen: React.FC<QueueProps> = ({ gameId, data, webSocket, gameStart }) => {
   const qrCodeRef = useRef<HTMLCanvasElement | null>(null);
   const userId = useUserId();
-  const [gameStart, setGameStart] = useState<boolean>(false);
-  const [webSocket, setWebsocket] = useState<WebSocket>(undefined);
-
-  useEffect(() => {
-    if (gameId && userId) {
-      const webSocket = new WebSocket('wss://localhost:888');
-
-      webSocket.onopen = () => {
-        webSocket.send(JSON.stringify({ gameId, userId }));
-      };
-
-      webSocket.onmessage = (event) => {
-        setData(JSON.parse(event.data));
-      };
-
-      webSocket.onclose = () => { /* Nothing yet */ };
-
-      webSocket.onerror = (error) => { console.log(error); /* Nothing yet */ };
-
-      setWebsocket(webSocket);
-
-      return () => { webSocket.close(); };
-    }
-  }, [gameId, userId]);
 
   useEffect(() => {
     const generateQRCode = async () => {
@@ -55,15 +34,6 @@ const GameQueuePage: React.FC = () => {
 
     generateQRCode();
   }, []);
-
-  useEffect(() => {
-    if (data && data['playerCount'] > 0 && data['host']) {
-      setGameStart(true);
-    }
-    if (data && data['role']) {
-      console.log(data);
-    }
-  }, [data]);
 
   const copyQRCode = () => {
     if (qrCodeRef.current) {
@@ -113,4 +83,4 @@ const GameQueuePage: React.FC = () => {
   );
 };
 
-export default GameQueuePage;
+export default QueueScreen;

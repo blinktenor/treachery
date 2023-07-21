@@ -21,14 +21,14 @@ const Home: React.FC = () => {
     const gameId = Math.floor(Math.random() * 100000000);
 
     // Redirect to /queue/<id>
-    router.push(`/queue/${gameId}`);
+    router.push(`/game/${gameId}`);
   };
 
   const joinGame = () => {
     const gameIdInput = gameInputValue.trim();
 
     if (gameIdInput && gameIdInput.length === 8) {
-      router.push(`/queue/${gameIdInput}`);
+      router.push(`/game/${gameIdInput}`);
     } else {
       setErrorCode('Game id must be 8 characters');
     }

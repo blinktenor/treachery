@@ -3,8 +3,10 @@ import useUserId from '../../hooks/useUserId';
 import '/app/globals.css'
 
 type GameData = {
-  gameId: string;
-  playerCount: number;
+  ability: string;
+  playerId: string;
+  role: string;
+  title: string;
 }
 
 interface RoleProps {

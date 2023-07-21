@@ -60,6 +60,9 @@ const Home: React.FC = () => {
         <button onClick={joinGame}>Join A Game</button>
         <div id='errorCode'> {errorCode} </div>
       </div>
+      <div className='learnMoreLink'>
+        <a href="https://mtgtreachery.net/en/" target="_blank" rel="noopener noreferrer">Learn more about the game</a>
+      </div>
     </div>
   );
 };

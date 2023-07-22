@@ -90,8 +90,15 @@ body {
   text-align: center;
   margin: 0px auto 32px auto;
   width: 40%;
+  .role{
+
+  }
+  .title{
+    font-size:x-large;
+    padding:16px;
+  }
   .ability{
-    width:60%;
+    font-size:large;
     align-items:center;
   }
 }

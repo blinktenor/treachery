@@ -13,24 +13,15 @@ const RoleScreen: React.FC<RoleProps> = ({ data }) => {
     return (<></>);
   }
 
-  const unveilRole = ()=>{
-    const roleCard = document.querySelector(".roleCard")
-    console.log("REVEALED", roleCard, data)
-    if(roleCard && data.url){
-      roleCard.style.backgroundimage = data.url
-    }
-  }
-
   return (
     <>
-      <div className="roleCard" >
-        <h1 className="Role">{data.role}</h1>
-        <h3 className='Title'>{data.title}</h3>
+      <div className='roleCard' >
+        <h1 className='role'> {data.role} </h1>
+        <h3 className='title'> {data.title} </h3>
         <div className='ability'>
-          <p> {data.ability}</p>
+          <p> {data.ability} </p>
         </div>
-        <button onClick={unveilRole}>Unveil</button>
-      </div>
+        </div>
     </>
   );
 };

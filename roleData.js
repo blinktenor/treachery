@@ -115,112 +115,139 @@ const roleData = {
     {
       "title": "The Demon",
       "ability": "Unveil {4} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Demon is unveiled, search your library for a card, put that card into your hand, then shuffle."
+      , "url": ""
     },
     {
       "title": "The Rebel General",
       "ability": "Unveil {6}When The Rebel General is unveiled, if it’s your main phase, for each other player, gain control of up to one target permanent that player controls until end of turn. Untap those permanents. They gain haste until end of turn."
+      , "url": ""
     },
     {
       "title": "The Seer",
       "ability": "Unveil {X} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Seer is unveiled, choose any target, shuffle your library, then scry X. Reveal the top card of your library and put it into your hand. The Seer deals damage equal to twice that card’s mana value to that permanent or player."
+      , "url": ""
     },
     {
       "title": "The Ambitious Queen",
       "ability": "Unveil—Pay 2 life, Exile a card from your hand. (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Ambitious Queen is unveiled, counter target spell."
+      , "url": ""
     },
     {
       "title": "The Beastmaster",
       "ability": "Unveil {5} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Beastmaster is unveiled, up to two target players each creates two 4/4 green Beast creature tokens."
+      , "url": ""
     },
     {
       "title": "The Corpse Snatcher",
       "ability": "Unveil {4}When The Corpse Snatcher is unveiled, each player mills two cards. When each player does, put a creature card from a graveyard onto the battlefield under target player’s control. That creature is a black Zombie in addition to its other colors and types."
+      , "url": ""
     },
     {
       "title": "The Sorceress",
       "ability": "Unveil {4} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Sorceress is unveiled, you may choose new targets for target instant or sorcery spell. Then copy that spell. You may choose new targets for the copy."
+      , "url": ""
     },
     {
       "title": "The Depths Caller",
       "ability": "Unveil {X}{3}When The Depths Caller is unveiled, choose a permanent type. Search your library for a card of the chosen type with mana value no more than X plus the number of permanents of that type you control, put it onto the battlefield, then shuffle."
+      , "url": ""
     },
     {
       "title": "The Necromancer",
       "ability": "Unveil {7}When The Necromancer is unveiled, if it’s your turn, for each player, you may put up to one target creature card from that player’s graveyard onto the battlefield under your control."
+      , "url": ""
     },
     {
       "title": "The Bio-Engineer",
       "ability": "Unveil—Sacrifice a nonland permanent.When The Bio-Engineer is unveiled, you get {a}{a}{a}{a}{a}{a} (six nut counters).{2}, Pay {a}: Put a +1/+1 counter on target creature. That creature becomes an artifact in addition to its other types.{3}, Pay {a}{a}: Gain control of target artifact."
+      , "url": ""
     },
     {
       "title": "The Madwoman",
       "ability": "Unveil {5}When The Madwoman is unveiled, tap up to two target creatures. Each of those creatures deals damage equal to its power to its controller. Prevent all combat damage that would be dealt to and dealt by those creatures this turn."
+      , "url": ""
     },
     {
       "title": "The Pyromancer",
       "ability": "Unveil {7} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Pyromancer is unveiled, it deals 6 damage to target player and each creature and planeswalker they control. If a creature is dealt damage this way, it loses indestructible until end of turn."
+      , "url": ""
     },
     {
       "title": "The Shapeshifting Slayer",
       "ability": "Unveil {6}When The Shapeshifting Slayer is unveiled, if it’s your main phase, choose a creature on the battlefield or a creature card in any zone other than a player’s hand or library. Create a token that’s a copy of it. That token gains menace, trample, and haste."
+      , "url": ""
     },
     {
       "title": "The War Shaman",
       "ability": "Unveil {6}When The War Shaman is unveiled, destroy up to two target noncreature permanents. If it’s your turn, create an X/X red Elemental creature token, where X is the total mana value of the permanents destroyed this way."
+      , "url": ""
     },
     {
       "title": "The Witch",
       "ability": "Unveil {4}When The Witch is unveiled, choose any number of target opponents. They each reveal their hand. For each of those players, you may choose a nonland card from their graveyard or hand and exile it."
+      , "url": ""
     },
     {
       "title": "The Sigil Mage",
       "ability": "Unveil {6} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Sigil Mage is unveiled, you may cast up to two target instant or sorcery cards from graveyards without paying their mana costs."
+      , "url": ""
     }
   ],
   "TRAITOR": [
     {
       "title": "The Ferryman",
       "ability": "Unveil {1}When The Ferryman is unveiled, choose target permanent. When that permanent is put into a graveyard this turn, return another target card that shares a card type with it from its owner’s graveyard to the battlefield under your control.{3}: Turn The Ferryman face down. Activate only during your turn and only once each turn."
+      , "url": ""
     },
     {
       "title": "The Metamorph",
       "ability": "Unveil—Pay 8 life, Discard a card.When The Metamorph is unveiled, until end of turn, as an opponent loses the game, you may put The Metamorph outside the game. If you do, gain control of that player’s identity card and turn it face down."
+      , "url": ""
     },
     {
       "title": "The Banisher",
       "ability": "Unveil {7} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Banisher is unveiled, exile any number of target creatures. Draw a card for each nontoken creature exiled this way."
+      , "url": ""
     },
     {
       "title": "The Gatekeeper",
       "ability": "Unveil {4} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Gatekeeper is unveiled, create Cerberus, a legendary 4/8 black and red Hound creature token with menace, double strike, trample, and lifelink.{2}: Turn The Gatekeeper face down."
+      , "url": ""
     },
     {
       "title": "The Cleaner",
       "ability": "Unveil {8} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Cleaner is unveiled, if it’s your main phase, exile all nonland permanents you don’t control."
+      , "url": ""
     },
     {
       "title": "The Grenadier",
       "ability": "Unveil {X} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Grenadier is unveiled, create X colorless artifact tokens named Explosive with “{2}, {T}, Sacrifice this artifact: Destroy target nonland permanent. Its controller loses 2 life.”"
+      , "url": ""
     },
     {
       "title": "The Reflector",
       "ability": "Unveil {6}When The Reflector is unveiled, gain control of target ability, instant, or sorcery spell. You may choose new targets for it. Then copy that spell or ability for each opponent. You may choose new targets for the copies."
+      , "url": ""
     },
     {
       "title": "The Puppet Master",
       "ability": "Unveil {8}When The Puppet Master is unveiled, if it’s your turn, redistribute control of any number of other identity cards. Then, turn face down each of those cards that isn’t a Leader. (Each opponent must control one identity card.)At the beginning of your end step, draw a card."
+      , "url": ""
     },
     {
       "title": "The Oneiromancer",
       "ability": "Unveil {X}{X} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Oneiromancer is unveiled, each player exiles the top X cards of their library face down.You may look at cards exiled with The Oneiromancer, and you may cast spells among those cards without paying their mana costs. You can’t cast more than one spell this way each turn."
+      , "url": ""
     },
     {
       "title": "The Time Bender",
       "ability": "Unveil {6}When The Time Bender is unveiled, choose two —• Each player shuffles their hand and graveyard into their library, then draws seven cards.• Take an extra turn after this one.• End the turn."
+      , "url": ""
     },
     {
       "title": "The Wearer of Masks",
       "ability": "Unveil {0}As The Wearer of Masks is unveiled, choose four Traitor identity cards at random from outside the game. You may pay the unveil cost of one of those cards. If you do, until The Wearer of Masks is turned face down, it becomes a copy of that identity. If you don’t, turn The Wearer of Masks face down at the beginning of your next end step."
+      , "url": ""
     }
   ]
 };

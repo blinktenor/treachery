@@ -3,6 +3,13 @@ const roleData = require('./roleData.js');
 
 const connections = new Set();
 const games = {};
+const roleSetups = {
+  4: ["LEADER", "ASSASSIN", "ASSASSIN", "TRAITOR"],
+  5: ["LEADER", "ASSASSIN", "ASSASSIN", "GUARDIAN", "TRAITOR"],
+  6: ["LEADER", "ASSASSIN", "ASSASSIN", "ASSASSIN", "GUARDIAN", "TRAITOR"],
+  7: ["LEADER", "ASSASSIN", "ASSASSIN", "ASSASSIN", "GUARDIAN", "GUARDIAN", "TRAITOR"],
+  8: ["LEADER", "ASSASSIN", "ASSASSIN", "ASSASSIN", "GUARDIAN", "GUARDIAN", "TRAITOR", "TRAITOR"]
+}
 
 const isPlayerAssigned = (gameId, userId) => {
   const player = isPlayerInGame(gameId, userId);
@@ -18,13 +25,7 @@ const playersInGame = (game) => new Set([...game?.players].map((player) => playe
 const isHost = (gameId, userId) => games[gameId].host === userId;
 
 const assignRoles = (game) => {
-  const roleSetups = {
-    4: ["LEADER", "ASSASSIN", "ASSASSIN", "TRAITOR"],
-    5: ["LEADER", "ASSASSIN", "ASSASSIN", "GUARDIAN", "TRAITOR"],
-    6: ["LEADER", "ASSASSIN", "ASSASSIN", "ASSASSIN", "GUARDIAN", "TRAITOR"],
-    7: ["LEADER", "ASSASSIN", "ASSASSIN", "ASSASSIN", "GUARDIAN", "GUARDIAN", "TRAITOR"],
-    8: ["LEADER", "ASSASSIN", "ASSASSIN", "ASSASSIN", "GUARDIAN", "GUARDIAN", "TRAITOR", "TRAITOR"]
-  }
+
   const roles = roleSetups[game.players.length];
 
   // Shuffle the roles array to randomize the order
@@ -42,7 +43,7 @@ const assignRoles = (game) => {
     player.role = role;
     player.title = roleInfo.title;
     player.ability = roleInfo.ability;
-    player.url=roleInfo.url;
+    player.url = roleInfo.url;
   });
 
   game.started = true;

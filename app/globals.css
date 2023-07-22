@@ -79,8 +79,11 @@ body {
       display: inline-grid;
       margin: 8px auto 8px auto;
     }
-  }
-  
+  } 
+}
+
+.learnMoreLink {
+  color: mediumblue;
 }
 
 .roleCard {

@@ -50,13 +50,6 @@ const QueueScreen: React.FC<QueueProps> = ({ gameId, data, webSocket }) => {
     }
   };
 
-  const handleShareToDiscord = () => {
-    const url = window.location.href;
-    const discordShareUrl = `https://discord.com/api/share?url=${encodeURIComponent(url)}`;
-
-    window.open(discordShareUrl, '_blank');
-  };
-
   const startGame = () => {
     webSocket?.send(JSON.stringify({ gameId, userId, startGame: true }));
   }
@@ -76,7 +69,6 @@ const QueueScreen: React.FC<QueueProps> = ({ gameId, data, webSocket }) => {
           <canvas ref={qrCodeRef} />
           <button onClick={copyQRCode}> Copy QR Code </button>
           <button onClick={copyGameUrl}> Copy Game URL </button>
-          <button onClick={handleShareToDiscord}> Share to Discord </button>
         </div>
       </div>
     </>

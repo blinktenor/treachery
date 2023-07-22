@@ -19,8 +19,8 @@ const RoleScreen: React.FC<RoleProps> = ({ data }) => {
         <h1 className='role'> {data.role} </h1>
         <h3 className='title'> {data.title} </h3>
         <div>
-          <p className='ability'> {data.ability} </p>
           <p className='unveil'> {data.unveil} </p>
+          <p className='ability'> {data.ability} </p>
         </div>
         </div>
     </>

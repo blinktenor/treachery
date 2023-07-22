@@ -110,7 +110,7 @@ const roleData = {
     {
       "title": "The Flickering Mage",
       "undercover": "",
-      "unviel": "Unveil {6}",
+      "unveil": "Unveil {6}",
       "ability": "When The Flickering Mage is unveiled, exile up to five target nonland permanents. Return those cards to the battlefield tapped under their owner’s control at the beginning of the next end step.",
       "url": "" 
     },

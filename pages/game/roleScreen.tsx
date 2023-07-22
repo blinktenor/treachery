@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import useUserId from '../../hooks/useUserId';
 import '/app/globals.css'
 import { GameData } from '../../types/gameTypes';
@@ -8,7 +8,6 @@ interface RoleProps {
 }
 
 const RoleScreen: React.FC<RoleProps> = ({ data }) => {
-  const userId = useUserId();
 
   if (!data) {
     return (<></>);
@@ -16,9 +15,13 @@ const RoleScreen: React.FC<RoleProps> = ({ data }) => {
 
   return (
     <>
-      <div className='roleScreen'>
-        {data.ability}
-      </div>
+      <div className='roleCard' >
+        <h1 className='role'> {data.role} </h1>
+        <h3 className='title'> {data.title} </h3>
+        <div className='ability'>
+          <p> {data.ability} </p>
+        </div>
+        </div>
     </>
   );
 };

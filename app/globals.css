@@ -85,3 +85,13 @@ body {
 .learnMoreLink {
   color: mediumblue;
 }
+
+.roleCard {
+  text-align: center;
+  margin: 0px auto 32px auto;
+  width: 40%;
+  .ability{
+    width:60%;
+    align-items:center;
+  }
+}

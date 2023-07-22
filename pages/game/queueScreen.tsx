@@ -14,7 +14,7 @@ interface QueueProps {
 const QueueScreen: React.FC<QueueProps> = ({ gameId, data, webSocket }) => {
   const qrCodeRef = useRef<HTMLCanvasElement | null>(null);
   const userId = useUserId();
-  const gameStart = data && data.host && data.playerCount > 3 && data.playerCount < 9;
+  const gameStart = data && data.host && data.playerCount && data.playerCount > 3 && data.playerCount < 9;
 
   useEffect(() => {
     const generateQRCode = async () => {

@@ -109,13 +109,14 @@ const socketMethods = (ws) => {
       }
       
     } else if (userId && gameId && startGame) {
-      // if (playersInGame(games[gameId]) > 4 && isHost(gameId, userId)) {
+      const playerCount = playersInGame(games[gameId])
+      if (playerCount > 3 && playerCount < 9 && isHost(gameId, userId)) {
         const game = games[gameId];
         if (!game.started) {
           assignRoles(game);
         }
         broadcastRoles(connections, gameId);
-      // }
+      }
     }
   });
 

@@ -43,14 +43,11 @@ const QueueScreen: React.FC<QueueProps> = ({ gameId, data, webSocket }) => {
   };
 
   const copyGameUrl = () => {
-    navigator.clipboard.write(window.location.href as any as ClipboardItems);
-  };
-
-  const handleShareToDiscord = () => {
-    const url = window.location.href;
-    const discordShareUrl = `https://discord.com/api/share?url=${encodeURIComponent(url)}`;
-
-    window.open(discordShareUrl, '_blank');
+    try {
+      navigator.clipboard.writeText(window.location.href);
+    } catch (err) {
+      console.error('Failed to copy to clipboard:', err);
+    }
   };
 
   const startGame = () => {
@@ -72,7 +69,6 @@ const QueueScreen: React.FC<QueueProps> = ({ gameId, data, webSocket }) => {
           <canvas ref={qrCodeRef} />
           <button onClick={copyQRCode}> Copy QR Code </button>
           <button onClick={copyGameUrl}> Copy Game URL </button>
-          <button onClick={handleShareToDiscord}> Share to Discord </button>
         </div>
       </div>
     </>

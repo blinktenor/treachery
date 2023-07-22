@@ -74,75 +74,83 @@ const socketMethods = (ws) => {
   let socketConnection;
 
   ws.on('message', (message) => {
-    const data = JSON.parse(message);
-    const { userId, gameId, startGame } = data;
+    try {
+      const data = JSON.parse(message);
+      const { userId, gameId, startGame } = data;
 
-    if (userId && gameId && !startGame) {
-      if (!socketConnection) {
-        const newConnection = { socket: ws, gameId: gameId, userId: userId };
-        socketConnection = newConnection;
-        connections.add(newConnection);
-      }
-      
-      const player = { playerId: userId };
-
-      // Lets make sure the game object is up to date
-      if (!games[gameId]) {
-        createGame(userId, gameId, player);
-      } else {
-        // if there is no host, assign this player
-        if (games[gameId].host === '') {
-          games[gameId].host = userId;
+      if (userId && gameId && !startGame) {
+        if (!socketConnection) {
+          const newConnection = { socket: ws, gameId: gameId, userId: userId };
+          socketConnection = newConnection;
+          connections.add(newConnection);
         }
-        // if this player isn't in th game, add them
-        if (!isPlayerInGame(gameId, userId)) {
-          games[gameId].players.push(player);
+        
+        const player = { playerId: userId };
+
+        // Lets make sure the game object is up to date
+        if (!games[gameId]) {
+          createGame(userId, gameId, player);
+        } else {
+          // if there is no host, assign this player
+          if (games[gameId].host === '') {
+            games[gameId].host = userId;
+          }
+          // if this player isn't in th game, add them
+          if (!isPlayerInGame(gameId, userId)) {
+            games[gameId].players.push(player);
+          }
         }
-      }
 
-      const game = games[gameId];
-
-      if (!game.started) {
-        broadcastQueuePage(connections, gameId, userId);
-      } else {
-        broadcastRoles(connections, gameId);
-      }
-      
-    } else if (userId && gameId && startGame) {
-      const playerCount = playersInGame(games[gameId])
-      if (playerCount > 3 && playerCount < 9 && isHost(gameId, userId)) {
         const game = games[gameId];
+
         if (!game.started) {
-          assignRoles(game);
+          broadcastQueuePage(connections, gameId, userId);
+        } else {
+          broadcastRoles(connections, gameId);
         }
-        broadcastRoles(connections, gameId);
+        
+      } else if (userId && gameId && startGame) {
+        const playerCount = playersInGame(games[gameId])
+        if (playerCount > 3 && playerCount < 9 && isHost(gameId, userId)) {
+          const game = games[gameId];
+          if (!game.started) {
+            assignRoles(game);
+          }
+          broadcastRoles(connections, gameId);
+        }
       }
+    } catch (error) {
+      logToFile("Error on message - ", error);
     }
   });
 
   ws.on('close', () => {
-    connections.delete(socketConnection);
-    if (socketConnection) {
-      const { gameId, userId } = socketConnection;
+    try {
+      connections.delete(socketConnection);
+      if (socketConnection) {
+        const { gameId, userId } = socketConnection;
 
-      // Player dropped before we assigned roles
-      if (!isPlayerAssigned(gameId, userId)) {
-        const player = games[gameId]?.players.filter((player) => player.playerId === userId)[0];
-        games[gameId]?.players.splice(games[gameId].players.indexOf(player), 1);
+        // Player dropped before we assigned roles
+        if (!isPlayerAssigned(gameId, userId)) {
+          const player = games[gameId]?.players.filter((player) => player.playerId === userId)[0];
+          games[gameId]?.players.splice(games[gameId].players.indexOf(player), 1);
 
-        if (games[gameId]?.players.length === 0) {
-          games[gameId].host = '';
-        } else if (games[gameId].host === userId) {
-          games[gameId].host = games[gameId].players[0].playerId;
+          if (games[gameId]?.players.length === 0) {
+            games[gameId].host = '';
+          } else if (games[gameId].host === userId) {
+            games[gameId].host = games[gameId].players[0].playerId;
+          }
+        }
+
+        if (gameId) {
+          const messageToBroadcast = JSON.stringify({ playerCount: playersInGame(games[gameId]) });
+          connections.forEach((connection) => {
+            connection.socket.send(messageToBroadcast);
+          });
         }
       }
-
-      if (gameId) {
-        const messageToBroadcast = JSON.stringify({ playerCount: playersInGame(games[gameId]) });
-        connections.forEach((connection) => {
-          connection.socket.send(messageToBroadcast);
-        });
-      }
+    } catch (error) {
+      logToFile("Error on close - ", error);
     }
   });
 }

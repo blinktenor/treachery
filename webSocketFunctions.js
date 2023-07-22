@@ -43,9 +43,9 @@ const assignRoles = (game) => {
 const createGame = (userId, gameId, player) => games[gameId] = { host: userId, gameId: gameId, players: [player] };
 
 const broadcastQueuePage = (connections, gameId, userId) => {
-  const messageToBroadcast = JSON.stringify({ playerCount: playersInGame(games[gameId]), host: isHost(gameId, userId) });
   connections.forEach((connection) => {
     if (connection.gameId === gameId) {
+      const messageToBroadcast = JSON.stringify({ playerCount: playersInGame(games[gameId]), host: isHost(gameId, connection.userId) });
       connection.socket.send(messageToBroadcast);
     }
   });

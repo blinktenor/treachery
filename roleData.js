@@ -3,113 +3,113 @@ const roleData = {
     {
       "title": "The Blood Empress",
       "ability": "(Start the game with this identity face up in the command zone. You are the starting player.)Whenever one or more creatures an opponent controls die, you may pay {1}. If you do, choose one —• Create a 1/1 colorless Spirit creature token.• Tap or untap target nonland permanent.• Each opponent loses 2 life and you gain 2 life.• Scry 2."
-    },
+      , "url": "https://imgur.com/0SrVoVB" },
     {
       "title": "The Corrupted Regent",
       "ability": "(Start the game with this identity face up in the command zone. You are the starting player.)At the beginning of your draw step, you may draw an additional card. If you do, choose a card in your hand drawn this turn. Pay 3 life or put that card on top of your library."
-    },
+    , "url": "https://imgur.com/yinDS8W" },
     {
       "title": "The Chaos Bringer",
       "ability": "(Start the game with this identity face up in the command zone. You are the starting player.)At the beginning of your upkeep, roll a six-sided die. This ability has the indicated effect.1 — Do nothing.2 — Scry 1.3 — You gain 3 life.4 — Create a 0/1 white Goat creature token.5 — Create a Treasure token.6 — Repeat this process two more times."
-    },
+    , "url": "https://imgur.com/sJbZuig" },
     {
       "title": "His Beloved Majesty",
       "ability": "At the beginning of your upkeep, starting with the next player in turn order, each non-Leader player may choose a nonenchantment, nontoken permanent they control and draw a card. For each player who does, gain control of that permanent and untap it. If no one does, you draw a card."
-    },
+    , "url": "https://imgur.com/aP4cxqC" },
     {
       "title": "Her Seedborn Highness",
       "ability": "(Start the game with this identity face up in the command zone. You are the starting player.)Start the game with a number of seed counters on Her Seedborn Highness equal to the number of players.{3}, Remove a seed counter from Her Seedborn Highness: Untap all permanents you control. Activate only once each turn."
-    },
+    , "url": "https://imgur.com/kvkrfBV" },
     {
       "title": "The Gathering",
       "ability": "At the beginning of your upkeep, you may choose one that hasn’t been chosen —• White — You gain 8 life.• Blue — Draw two cards.• Black — Destroy target creature or planeswalker.• Red — Create three 1/1 red Goblin creature tokens.• Green — Destroy target artifact, enchantment, or land."
-    },
+   , "url": "https://imgur.com/giOXfTk" },
     {
       "title": "The King over the Scrapyard",
       "ability": "Whenever a spell or ability an opponent controls destroys or exiles a nontoken permanent you control, create a Treasure token. (It’s an artifact with “{T}, Sacrifice this artifact: Add one mana of any color.”)Sacrifice three Treasures: Target player draws a card."
-    },
+    , "url": "https://imgur.com/dD9R9a8" },
     {
       "title": "The Old Ruler",
       "ability": "(Start the game with this identity face up in the command zone. You are the starting player.)Your starting life total is increased by 15.Your starting hand size and your maximum hand size are each increased by one.At the beginning of your first upkeep, create three Treasure tokens."
-    },
+    , "url": "https://imgur.com/nfkBcoG" },
     {
       "title": "The Queen of Light",
       "ability": "(Start the game with this identity face up in the command zone. You are the starting player.)Start the game with a number of purification counters on The Queen of Light equal to half the number of players, rounded down.{3}, Remove a purification counter from The Queen of Light: Exile a permanent of your choice. (This ability doesn’t target anything. You choose a permanent as it resolves.)"
-    },
+    , "url": "https://imgur.com/s61PWde" },
     {
       "title": "The Void Tyrant",
       "ability": "Start the game with a number of void counters on The Void Tyrant equal to half the number of players, rounded down.{3}, Remove a void counter from The Void Tyrant: Counter target spell or ability from a nonidentity source. (Mana abilities can’t be targeted.)"
-    },
+    , "url": "https://imgur.com/kdRe096" },
     {
       "title": "The Twin Princesses",
-      "ability": "{2}: Copy target activated or triggered ability you control. You may choose new targets for the copy. Activate only once each turn. (Mana abilities can’t be targeted.)"
-    }
+      "ability": "{2}: Copy target activated or triggered ability you control. You may choose new targets for the copy. Activate only once each turn. (Mana abilities can’t be targeted.)",
+      "url": "https://imgur.com/Fwq2AZE"}
   ],
   "GUARDIAN": [
     {
       "title": "The Augur",
       "ability": "Undercover — Unveil this identity only if another player has four or fewer cards in hand.Unveil {X}{2}When The Augur is unveiled, shuffle your library, scry X, then reveal the top card of your library. You may play that card without paying its mana cost."
-    },
+    , "url": "" },
     {
       "title": "The Ætherist",
       "ability": "Undercover — Unveil this identity only if another player controls five or more lands.Unveil {4}When The Ætherist is unveiled, counter target spell. At the beginning of target player’s next main phase, they gain life and add an amount of {C} equal to that spell’s mana value."
-    },
+    , "url": "" },
     {
       "title": "The Cathar",
       "ability": "Unveil—{6}, Pay 6 life. (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Cathar is unveiled, exile up to three target nonland permanents until you lose the game. (Those permanents return under their owners’ control.)"
-    },
+    , "url": "" },
     {
       "title": "The Bodyguard",
       "ability": "Unveil {5} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Bodyguard is unveiled, until your next turn, prevent all damage that would be dealt to target player and each creature and planeswalker they control."
-    },
+    , "url": "" },
     {
       "title": "The Flickering Mage",
       "ability": "Unveil {6} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Flickering Mage is unveiled, exile up to five target nonland permanents. Return those cards to the battlefield tapped under their owner’s control at the beginning of the next end step."
-    },
+    , "url": "" },
     {
       "title": "The Great Martyr",
       "ability": "Undercover — Unveil this identity only if another identity card has been unveiled or if another player attacked a Leader player this game.Unveil {X}{X}{1}When The Great Martyr is unveiled, you gain X life and draw X cards. Until end of turn, if a source an opponent controls would deal damage to a Leader player, that damage is dealt to you instead. The same is true for losing life, discarding cards and sacrificing permanents."
-    },
+    , "url": "" },
     {
       "title": "The Spellsnatcher",
       "ability": "Unveil {6} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Spellsnatcher is unveiled, target player gains control of target spell. They may choose new targets for it. (If that spell becomes a permanent, it enters the battlefield under that player’s control.)"
-    },
+    , "url": "" },
     {
       "title": "The Golem",
       "ability": "Unveil {7} (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Golem is unveiled, target Leader player loses 7 life and you gain 7 life.Leader players have hexproof and can’t be attacked as long as you have 7 or more life."
-    },
+    , "url": "" },
     {
       "title": "The Cryomancer",
       "ability": "Undercover — Unveil this identity only if another player controls ten or more permanents.Unveil {X}{2}When The Cryomancer is unveiled, tap X target permanents. If it’s your turn, those permanents don’t untap during their controller’s next untap step."
-    },
+    , "url": "" },
     {
       "title": "The Immortal",
       "ability": "Undercover — Unveil this identity only if a player’s life total is lesser or equal than half their starting life total, or if a graveyard has seven or more cards in it.Unveil {4}When The Immortal is unveiled, up to one target player gains 15 life and up to one target player shuffles their graveyard into their library."
-    },
+    , "url": "" },
     {
       "title": "The Hieromancer",
       "ability": "Unveil 9This identity’s unveil cost costs {1} less for each creature controlled by non-Leader players.When The Hieromancer is unveiled, tap all creatures controlled by non-Leader players. They don’t untap during their controller’s next untap step."
-    },
+    , "url": "" },
     {
       "title": "The Marshal",
       "ability": "Unveil {X}5 (Start the game with this identity face down in the command zone. Turn it face up any time for its unveil cost.)When The Marshal is unveiled, choose a color and a creature type. Target player creates X plus five 1/1 creature tokens of the chosen color and type. If X is 3 or more, destroy all other creatures."
-    },
+    , "url": "" },
     {
       "title": "The Supplier",
       "ability": "Unveil {6}When The Supplier is unveiled, choose one or both —• Target player searches their library and/or graveyard for a card and put it into their hand. If they searched their library this way, they shuffle.• Target player returns a face-up exiled card they own to their hand."
-    },
+    , "url": "" },
     {
       "title": "The Warlock",
       "ability": "Undercover — Unveil this identity only if another identity card has been unveiled this game.Unveil {3}When The Warlock is unveiled, end the phase if it isn’t the ending phase. (Exile all spells and abilities on the stack. Remove all creatures from combat. Then, the active player begins their next phase.)"
-    },
+    , "url": "" },
     {
       "title": "The Oracle",
       "ability": "Undercover — Unveil this identity only if a Leader player is the target of a spell or ability another player controls, or if they are attacked by a player other than you.Unveil {2}When The Oracle is unveiled, until end of turn, Leader players have protection from everything and their life totals can’t change."
-    },
+    , "url": "" },
     {
       "title": "The Summoner",
       "ability": "Undercover — Unveil this identity only if another player attacked you or a Leader player this game.Unveil {X}{Y}{1}When The Summoner is unveiled, target player creates X Y/Y green Elemental Beast creature tokens."
-    }
+    , "url":""}
   ],
   "ASSASSIN": [
     {

@@ -43,6 +43,7 @@ const assignRoles = (game) => {
     player.role = role;
     player.title = roleInfo.title;
     player.ability = roleInfo.ability;
+    player.unveil = roleInfo.unveil;
     player.url = roleInfo.url;
   });
 

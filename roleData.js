@@ -81,6 +81,7 @@ const roleData = {
   "GUARDIAN": [
     {
       "title": "The Augur",
+
       "undercover": "Unveil this identity only if another player has four or fewer cards in hand.",
       "unveil": "Unveil {X}{2}",
       "ability": "When The Augur is unveiled, shuffle your library, scry X, then reveal the top card of your library. You may play that card without paying its mana cost.",
